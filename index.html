@@ -19,6 +19,11 @@
             --shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
+        /* Reset Global para evitar cortes laterais */
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
@@ -27,12 +32,13 @@
             background-color: #f0f2f5;
             color: var(--text-color);
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden; /* Evita rolagem horizontal da página inteira */
         }
 
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 15px; /* Reduzido levemente para mobile */
         }
 
         /* Navigation Buttons */
@@ -40,7 +46,7 @@
             display: inline-block;
             background-color: var(--secondary-color);
             color: white;
-            padding: 10px 20px;
+            padding: 12px 20px;
             text-decoration: none;
             border-radius: 8px;
             margin-bottom: 20px;
@@ -48,7 +54,6 @@
             transition: background 0.2s;
             text-align: center;
             width: 100%;
-            box-sizing: border-box;
         }
 
         .nav-btn:hover {
@@ -59,7 +64,7 @@
         h1 {
             text-align: center;
             color: var(--secondary-color);
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             margin-bottom: 1.5rem;
             line-height: 1.3;
         }
@@ -69,6 +74,7 @@
             border-bottom: 2px solid var(--primary-color);
             padding-bottom: 8px;
             margin-top: 30px;
+            font-size: 1.4rem;
         }
 
         h4 {
@@ -84,13 +90,14 @@
             margin-bottom: 20px;
             box-shadow: var(--shadow);
             border-left: 5px solid var(--primary-color);
+            width: 100%; /* Garante que não ultrapasse */
         }
 
         .nota-dica { border-left-color: #16a085; background-color: #e8f6f3; }
         .extra-task { border-left-color: #9b59b6; background-color: #f5eef8; }
         .nota-gramatical { border-left-color: #f39c12; background-color: #fffbf0; }
 
-        /* Mobile Optimized Tables */
+        /* Mobile Optimized Tables (Padrão para listas) */
         .mobile-table {
             width: 100%;
             border-collapse: collapse;
@@ -136,6 +143,7 @@
             font-size: 0.9em;
             display: block;
             margin-bottom: 4px;
+            word-wrap: break-word; /* Quebra palavras longas se necessário */
         }
 
         .pronunciation-text {
@@ -193,6 +201,7 @@
             font-weight: bold;
             display: flex;
             align-items: center;
+            flex-wrap: wrap; /* Permite quebrar linha se o áudio não couber */
         }
 
         .vocab-details {
@@ -206,7 +215,7 @@
             color: var(--primary-color);
             font-weight: bold;
             display: inline-block;
-            min-width: 80px;
+            min-width: 60px;
             text-align: center;
             border-bottom: 1px solid var(--primary-color);
         }
@@ -241,23 +250,48 @@
             color: #7f8c8d;
         }
 
+        /* Estilo Específico para Tabela de Estrutura (14.2) */
+        .structure-table {
+            min-width: 100%; 
+            /* Força a tabela a se comportar como tabela tradicional */
+        }
+        .structure-table th, .structure-table td {
+            white-space: nowrap; /* Evita quebra de linha indesejada nas células curtas */
+            padding: 10px;
+            text-align: left;
+        }
+        /* Wrapper para rolagem horizontal apenas na tabela de estrutura */
+        .scroll-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; /* Suavidade no iOS */
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            background: white;
+        }
+
         /* Small screen adjustments */
         @media (max-width: 600px) {
-            .mobile-table thead { display: none; }
-            .mobile-table td { 
+            /* Regras APENAS para tabelas que NÃO são de estrutura */
+            .mobile-table:not(.structure-table) thead { display: none; }
+            .mobile-table:not(.structure-table) td { 
                 display: block; 
                 width: 100%; 
-                padding: 8px 15px;
+                padding: 10px 15px;
             }
-            .col-english {
+            .mobile-table:not(.structure-table) .col-english {
                 background-color: #f9f9f9;
                 padding-top: 15px;
                 border-bottom: none;
             }
-            .col-details {
+            .mobile-table:not(.structure-table) .col-details {
                 padding-bottom: 15px;
                 border-bottom: 2px solid #e0e0e0;
             }
+            
+            /* Ajustes gerais */
+            .container { padding: 10px; }
+            h1 { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -323,8 +357,11 @@
     <section>
         <h2>14.2 Estrutura: "Was/Were" + Verbo-ING 🛠️</h2>
         <p><strong>Estrutura Afirmativa:</strong> Sujeito + was/were + Verbo Principal-ING.</p>
-        <div style="overflow-x: auto;">
-            <table class="mobile-table" style="min-width: 300px;">
+        
+        <!-- Wrapper com classe scroll-wrapper para permitir rolagem horizontal -->
+        <div class="scroll-wrapper">
+            <!-- Adicionada classe structure-table para evitar quebra no mobile -->
+            <table class="mobile-table structure-table">
                 <thead>
                     <tr>
                         <th>Sujeito</th>
@@ -341,6 +378,7 @@
                 </tbody>
             </table>
         </div>
+        <p style="font-size: 0.9em; color: #666;">ℹ️ Deslize a tabela para o lado se necessário.</p>
     </section>
 
     <!-- Section 14.3 Affirmative -->
