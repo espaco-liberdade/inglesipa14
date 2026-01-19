@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 14: Passado Contínuo (Mobile Optimized)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --bg-light: #f8f9fa;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: var(--text-color);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation Buttons */
+        .nav-btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            transition: background 0.2s;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .nav-btn:hover {
+            background-color: #1a252f;
+        }
+
+        /* Headers */
+        h1 {
+            text-align: center;
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        h2, h3 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+
+        h4 {
+            color: var(--primary-color);
+            margin-top: 20px;
+        }
+
+        /* Cards & Sections */
+        .theme-intro, .nota-gramatical, .nota-dica, .extra-task, .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .nota-dica { border-left-color: #16a085; background-color: #e8f6f3; }
+        .extra-task { border-left-color: #9b59b6; background-color: #f5eef8; }
+        .nota-gramatical { border-left-color: #f39c12; background-color: #fffbf0; }
+
+        /* Mobile Optimized Tables */
+        .mobile-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .mobile-table th {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .mobile-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .mobile-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Specific Column Styles */
+        .col-english {
+            width: 45%;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .col-details {
+            width: 55%;
+        }
+
+        /* Stacked Details Styles */
+        .ipa-text {
+            font-family: 'Courier New', monospace;
+            color: #e67e22;
+            font-size: 0.9em;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .pronunciation-text {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.85em;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .translation-text {
+            color: #555;
+            font-size: 0.95em;
+            display: block;
+            border-top: 1px dashed #eee;
+            padding-top: 4px;
+        }
+
+        .example-word {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        /* Audio Button */
+        .audio-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin-left: 5px;
+            padding: 5px;
+            border-radius: 50%;
+            transition: background 0.2s;
+            vertical-align: middle;
+        }
+
+        .audio-btn:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+        
+        .audio-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Vocab Layout */
+        .vocab-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .vocab-word {
+            font-size: 1.1em;
+            color: var(--secondary-color);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .vocab-details {
+            margin-top: 5px;
+            padding-left: 10px;
+            border-left: 3px solid #ddd;
+        }
+
+        /* Exercises */
+        .fill-in-blank {
+            color: var(--primary-color);
+            font-weight: bold;
+            display: inline-block;
+            min-width: 80px;
+            text-align: center;
+            border-bottom: 1px solid var(--primary-color);
+        }
+
+        .exercise-list li {
+            margin-bottom: 12px;
+        }
+
+        /* Gabarito Section */
+        details.gabarito {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        details.gabarito summary {
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--secondary-color);
+        }
+
+        .quiz-options { list-style: none; padding: 0; }
+        .quiz-options li { margin-bottom: 8px; padding: 8px; background: white; border-radius: 4px; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #7f8c8d;
+        }
+
+        /* Small screen adjustments */
+        @media (max-width: 600px) {
+            .mobile-table thead { display: none; }
+            .mobile-table td { 
+                display: block; 
+                width: 100%; 
+                padding: 8px 15px;
+            }
+            .col-english {
+                background-color: #f9f9f9;
+                padding-top: 15px;
+                border-bottom: none;
+            }
+            .col-details {
+                padding-bottom: 15px;
+                border-bottom: 2px solid #e0e0e0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="#" class="nav-btn">⬅️ Voltar ao Menu</a>
+
+    <h1>Aula 14: Ações em Progresso no Passado – Passado Contínuo <span style="font-size:1.2em">🎬🕰️</span><br><small>(Actions in Progress in the Past – Past Continuous)</small></h1>
+
+    <div class="theme-intro">
+        <p>Olá! Chegamos à Aula 14! 🌟</p>
+        <p>Nesta aula, vamos aprender a descrever ações que estavam acontecendo em um momento específico no passado, ou que foram interrompidas por outra ação. Usaremos o <strong>Passado Contínuo (Past Continuous Tense)</strong>. O tema será: <strong>O que você estava fazendo quando algo importante aconteceu (ex: uma ligação, uma notícia)</strong>. Prepare-se para contar histórias com mais detalhes e criar um cenário para seus eventos passados! 📞📰⚡</p>
+    </div>
+
+    <!-- Section 14.1 -->
+    <section>
+        <h2>14.1 O Cenário do Passado: Usos do Passado Contínuo 🖼️</h2>
+        <p>O <strong>Passado Contínuo</strong> é usado para:</p>
+        
+        <div class="card">
+            <ul style="padding-left: 20px;">
+                <li><strong>Descrever uma ação que estava em progresso em um momento específico.</strong>
+                    <div class="vocab-details">
+                        <p>Yesterday at 7 PM, I <span class="example-word">was having</span> dinner. <button class="audio-btn" onclick="playAudio('Yesterday at 7 PM, I was having dinner.')">🔊</button></p>
+                        <span class="ipa-text">/ˈjestərdeɪ æt ˈsevn piː em aɪ wəz ˈhævɪŋ ˈdɪnər/</span>
+                        <span class="pronunciation-text">(IÉS-tãr-dei ét SÉ-vãn PÍI-ÉM, ái uãz RÉ-vin DÊ-nãr)</span>
+                        <span class="translation-text">Ontem às 19h, eu estava jantando.</span>
+                    </div>
+                </li>
+                <br>
+                <li><strong>Descrever uma ação interrompida por outra (Passado Simples).</strong>
+                    <div class="vocab-details">
+                        <p>I <span class="example-word">was watching</span> TV when the phone <span class="example-word">rang</span>. <button class="audio-btn" onclick="playAudio('I was watching TV when the phone rang.')">🔊</button></p>
+                        <span class="ipa-text">/aɪ wəz ˈwɑːtʃɪŋ ˌtiːˈviː wen ðə foʊn ræŋ/</span>
+                        <span class="pronunciation-text">(ÁI uãz UÓ-tchin tíi-VÍI UÉN dhã FÔUN RÉN)</span>
+                        <span class="translation-text">Eu estava assistindo TV quando o telefone tocou.</span>
+                    </div>
+                </li>
+                <br>
+                <li><strong>Duas ações acontecendo ao mesmo tempo.</strong>
+                    <div class="vocab-details">
+                        <p>While I <span class="example-word">was cooking</span>, my brother <span class="example-word">was setting</span> the table. <button class="audio-btn" onclick="playAudio('While I was cooking, my brother was setting the table.')">🔊</button></p>
+                        <span class="ipa-text">/waɪl aɪ wəz ˈkʊkɪŋ maɪ ˈbrʌðər wəz ˈsetɪŋ ðə ˈteɪbl/</span>
+                        <span class="pronunciation-text">(UÁI-õl ái uãz CÚ-kin, mái BRÂ-dhãr uãz SÉ-tin dhã TÊI-bõl)</span>
+                        <span class="translation-text">Enquanto eu estava cozinhando, meu irmão estava pondo a mesa.</span>
+                    </div>
+                </li>
+                <br>
+                <li><strong>Dar informações de fundo (Setting the scene).</strong>
+                    <div class="vocab-details">
+                        <p>The sun <span class="example-word">was shining</span> and the birds <span class="example-word">were singing</span>. <button class="audio-btn" onclick="playAudio('The sun was shining and the birds were singing.')">🔊</button></p>
+                        <span class="ipa-text">/ðə sʌn wəz ˈʃaɪnɪŋ ænd ðə bɜːrdz wər ˈsɪŋɪŋ/</span>
+                        <span class="pronunciation-text">(dhã SÂN uãz XÁI-nin énd dhã BÃRDZ uãr SÊN-guin)</span>
+                        <span class="translation-text">O sol estava brilhando e os pássaros estavam cantando.</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Section 14.2 -->
+    <section>
+        <h2>14.2 Estrutura: "Was/Were" + Verbo-ING 🛠️</h2>
+        <p><strong>Estrutura Afirmativa:</strong> Sujeito + was/were + Verbo Principal-ING.</p>
+        <div style="overflow-x: auto;">
+            <table class="mobile-table" style="min-width: 300px;">
+                <thead>
+                    <tr>
+                        <th>Sujeito</th>
+                        <th>To Be (Passado)</th>
+                        <th>Verbo + ING</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>I</td><td>was</td><td>studying</td></tr>
+                    <tr><td>You</td><td>were</td><td>working</td></tr>
+                    <tr><td>He/She/It</td><td>was</td><td>reading</td></tr>
+                    <tr><td>We</td><td>were</td><td>cooking</td></tr>
+                    <tr><td>They</td><td>were</td><td>talking</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Section 14.3 Affirmative -->
+    <section>
+        <h2>14.3 Frases Afirmativas 👍</h2>
+        <p>Ações em andamento e interrupções.</p>
+        
+        <table class="mobile-table">
+            <thead>
+                <tr>
+                    <th>Inglês</th>
+                    <th>Detalhes (Fonética & Tradução)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows manually processed for optimized layout -->
+                <tr>
+                    <td class="col-english">
+                        I <span class="example-word">was watching</span> a movie when the power went out. 
+                        <button class="audio-btn" onclick="playAudio('I was watching a movie when the power went out.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/aɪ wəz ˈwɑːtʃɪŋ ə ˈmuːvi wen ðə ˈpaʊər went aʊt/</span>
+                        <span class="pronunciation-text">(ÁI uãz UÓ-tchin ã MÚU-vi UÉN dhã PÁU-ãr UÉNT ÁUT)</span>
+                        <span class="translation-text">Eu estava assistindo a um filme quando a luz acabou.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        You <span class="example-word">were sleeping</span> when I called you.
+                        <button class="audio-btn" onclick="playAudio('You were sleeping when I called you.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/juː wər ˈsliːpɪŋ wen aɪ kɔːld juː/</span>
+                        <span class="pronunciation-text">(IÚU uãr SLÍI-pin UÉN ái CÓLD iúu)</span>
+                        <span class="translation-text">Você estava dormindo quando eu te liguei.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        He <span class="example-word">was cooking</span> dinner when the guests arrived.
+                        <button class="audio-btn" onclick="playAudio('He was cooking dinner when the guests arrived.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/hiː wəz ˈkʊkɪŋ ˈdɪnər wen ðə ɡests əˈraɪvd/</span>
+                        <span class="pronunciation-text">(RÍI uãz CÚ-kin DÊ-nãr UÉN dhã GUÉSTS ã-RÁIVD)</span>
+                        <span class="translation-text">Ele estava cozinhando o jantar quando os convidados chegaram.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        She <span class="example-word">was reading</span> a book while her kids <span class="example-word">were playing</span>.
+                        <button class="audio-btn" onclick="playAudio('She was reading a book while her kids were playing.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/ʃiː wəz ˈriːdɪŋ ə bʊk waɪl hər kɪdz wər ˈpleɪɪŋ/</span>
+                        <span class="pronunciation-text">(XÍI uãz RÍI-din ã BÚK UÁI-õl rãr KÊDZ uãr PLÊI-in)</span>
+                        <span class="translation-text">Ela estava lendo um livro enquanto seus filhos estavam brincando.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        It <span class="example-word">was raining</span> heavily when we left the house.
+                        <button class="audio-btn" onclick="playAudio('It was raining heavily when we left the house.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/ɪt wəz ˈreɪnɪŋ ˈhevɪli wen wiː left ðə haʊs/</span>
+                        <span class="pronunciation-text">(ÊT uãz RÊI-nin RÉ-vĩ-li UÉN uíi LÉFT dhã RÁUS)</span>
+                        <span class="translation-text">Estava chovendo forte quando saímos de casa.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        We <span class="example-word">were studying</span> when we heard a loud noise.
+                        <button class="audio-btn" onclick="playAudio('We were studying when we heard a loud noise.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/wiː wər ˈstʌdiɪŋ wen wiː hɜːrd ə laʊd nɔɪz/</span>
+                        <span class="pronunciation-text">(UÍI uãr STÂ-di-in UÉN uíi RÃRD ã LÁUD NÓIZ)</span>
+                        <span class="translation-text">Nós estávamos estudando quando ouvimos um barulho alto.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        They <span class="example-word">were talking</span> about their vacation when the news came on TV.
+                        <button class="audio-btn" onclick="playAudio('They were talking about their vacation when the news came on TV.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/ðeɪ wər ˈtɔːkɪŋ əˈbaʊt ðer veɪˈkeɪʃn wen ðə nuːz keɪm ɑːn ˌtiːˈviː/</span>
+                        <span class="pronunciation-text">(DHÊI uãr TÓ-kin ã-BÁUT dhér vei-KÊI-shãn UÉN dhã NÚUZ KÊIM ón tíi-VÍI)</span>
+                        <span class="translation-text">Eles estavam conversando sobre suas férias quando a notícia apareceu na TV.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        I <span class="example-word">was working</span> on my computer when it suddenly crashed.
+                        <button class="audio-btn" onclick="playAudio('I was working on my computer when it suddenly crashed.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/aɪ wəz ˈwɜːrkɪŋ ɑːn maɪ kəmˈpjuːtər wen ɪt ˈsʌdnli kræʃt/</span>
+                        <span class="pronunciation-text">(ÁI uãz UÃR-kin ón mái cãm-PIÚU-tãr UÉN êt SÂ-dãn-li KRÉSHT)</span>
+                        <span class="translation-text">Eu estava trabalhando no meu computador quando ele travou de repente.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        You <span class="example-word">were driving</span> to work when you saw the accident.
+                        <button class="audio-btn" onclick="playAudio('You were driving to work when you saw the accident.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/juː wər ˈdraɪvɪŋ tə wɜːrk wen juː sɔː ði ˈæksɪdənt/</span>
+                        <span class="pronunciation-text">(IÚU uãr DRÁI-vin tã UÃRK UÉN iúu SÓ dhí ÉK-sĩ-dãnt)</span>
+                        <span class="translation-text">Você estava dirigindo para o trabalho quando viu o acidente.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        He <span class="example-word">was taking</span> a shower when the doorbell rang.
+                        <button class="audio-btn" onclick="playAudio('He was taking a shower when the doorbell rang.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/hiː wəz ˈteɪkɪŋ ə ˈʃaʊər wen ðə ˈdɔːrbel ræŋ/</span>
+                        <span class="pronunciation-text">(RÍI uãz TÊI-kin ã XÁU-ãr UÉN dhã DÓR-bél RÉN)</span>
+                        <span class="translation-text">Ele estava tomando banho quando a campainha tocou.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        She <span class="example-word">was listening</span> to a podcast while she <span class="example-word">was jogging</span>.
+                        <button class="audio-btn" onclick="playAudio('She was listening to a podcast while she was jogging.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/ʃiː wəz ˈlɪsnɪŋ tu ə ˈpɑːdkæst waɪl ʃiː wəz ˈdʒɑːɡɪŋ/</span>
+                        <span class="pronunciation-text">(XÍI uãz LÊS-nin tu ã PÓD-kést UÁI-õl xíi uãz DJÓ-guin)</span>
+                        <span class="translation-text">Ela estava ouvindo um podcast enquanto corria.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        We <span class="example-word">were having</span> a picnic when it started to rain.
+                        <button class="audio-btn" onclick="playAudio('We were having a picnic when it started to rain.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/wiː wər ˈhævɪŋ ə ˈpɪknɪk wen ɪt ˈstɑːrtɪd tə reɪn/</span>
+                        <span class="pronunciation-text">(UÍI uãr RÉ-vin ã PÊK-nêk UÉN êt STÁR-têd tã RÊIN)</span>
+                        <span class="translation-text">Nós estávamos fazendo um piquenique quando começou a chover.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        They <span class="example-word">were playing</span> cards when someone knocked on the door.
+                        <button class="audio-btn" onclick="playAudio('They were playing cards when someone knocked on the door.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/ðeɪ wər ˈpleɪɪŋ kɑːrdz wen ˈsʌmwʌn nɑːkt ɑːn ðə dɔːr/</span>
+                        <span class="pronunciation-text">(DHÊI uãr PLÊI-in CÁRDZ UÉN SÂM-uãn NÓKT ón dhã DÓR)</span>
+                        <span class="translation-text">Eles estavam jogando cartas quando alguém bateu na porta.</span>
+                    </td>
+                </tr>
+                 <tr>
+                    <td class="col-english">
+                        I <span class="example-word">was dreaming</span> about a vacation when my alarm clock rang.
+                        <button class="audio-btn" onclick="playAudio('I was dreaming about a vacation when my alarm clock rang.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/aɪ wəz ˈdriːmɪŋ əˈbaʊt ə veɪˈkeɪʃn wen maɪ əˈlɑːrm klɑːk ræŋ/</span>
+                        <span class="pronunciation-text">(ÁI uãz DRÍI-min ã-BÁUT ã vei-KÊI-shãn UÉN mái ã-LÁRM CLÓK RÉN)</span>
+                        <span class="translation-text">Eu estava sonhando com férias quando meu despertador tocou.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        You <span class="example-word">were making</span> a cake when I arrived.
+                        <button class="audio-btn" onclick="playAudio('You were making a cake when I arrived.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/juː wər ˈmeɪkɪŋ ə keɪk wen aɪ əˈraɪvd/</span>
+                        <span class="pronunciation-text">(IÚU uãr MÊI-kin ã KÊIK UÉN ái ã-RÁIVD)</span>
+                        <span class="translation-text">Você estava fazendo um bolo quando eu cheguei.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        He <span class="example-word">was cleaning</span> the windows when he saw his friend passing by.
+                        <button class="audio-btn" onclick="playAudio('He was cleaning the windows when he saw his friend passing by.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/hiː wəz ˈkliːnɪŋ ðə ˈwɪndoʊz wen hiː sɔː hɪz frend ˈpæsɪŋ baɪ/</span>
+                        <span class="pronunciation-text">(RÍI uãz CLÍI-nin dhã UÊN-dôuz UÉN ríi SÓ rêz FRÉND PÉ-sin BÁI)</span>
+                        <span class="translation-text">Ele estava limpando as janelas quando viu seu amigo passando.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        She <span class="example-word">was talking</span> to her boss when she received an important message.
+                        <button class="audio-btn" onclick="playAudio('She was talking to her boss when she received an important message.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/ʃiː wəz ˈtɔːkɪŋ tə hər bɔːs wen ʃiː rɪˈsiːvd ən ɪmˈpɔːrtnt ˈmesɪdʒ/</span>
+                        <span class="pronunciation-text">(XÍI uãz TÓ-kin tã rãr BÓS UÉN xíi ri-SÍIVD ãn em-PÓR-tãnt MÉ-sêdj)</span>
+                        <span class="translation-text">Ela estava falando com o chefe dela quando recebeu uma mensagem importante.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        We <span class="example-word">were discussing</span> the project when the manager walked in.
+                        <button class="audio-btn" onclick="playAudio('We were discussing the project when the manager walked in.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/wiː wər dɪˈskʌsɪŋ ðə ˈprɑːdʒekt wen ðə ˈmænɪdʒər wɔːkt ɪn/</span>
+                        <span class="pronunciation-text">(UÍI uãr dĩ-SCÂ-sin dhã PRÓ-djekt UÉN dhã MÉ-nĩ-djãr UÓKT ÊN)</span>
+                        <span class="translation-text">Nós estávamos discutindo o projeto quando o gerente entrou.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        They <span class="example-word">were painting</span> the living room when I visited them.
+                        <button class="audio-btn" onclick="playAudio('They were painting the living room when I visited them.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/ðeɪ wər ˈpeɪntɪŋ ðə ˈlɪvɪŋ ruːm wen aɪ ˈvɪzɪtɪd ðəm/</span>
+                        <span class="pronunciation-text">(DHÊI uãr PÊIN-tin dhã LÊ-vin RÚUM UÉN ái VÊ-zê-têd dhãm)</span>
+                        <span class="translation-text">Eles estavam pintando a sala de estar quando eu os visitei.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        The children <span class="example-word">were playing</span> outside when it started to snow.
+                        <button class="audio-btn" onclick="playAudio('The children were playing outside when it started to snow.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/ðə ˈtʃɪldrən wər ˈpleɪɪŋ ˌaʊtˈsaɪd wen ɪt ˈstɑːrtɪd tə snoʊ/</span>
+                        <span class="pronunciation-text">(dhã TCHÊL-drãn uãr PLÊI-in áut-SÁID UÉN êt STÁR-têd tã SNÔU)</span>
+                        <span class="translation-text">As crianças estavam brincando lá fora quando começou a nevar.</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Section 14.4 Negative -->
+    <section>
+        <h2>14.4 Frases Negativas 👎</h2>
+        <p><strong>Estrutura:</strong> Sujeito + wasn't/weren't + Verbo-ING.</p>
+        
+        <table class="mobile-table">
+            <thead>
+                <tr>
+                    <th>Inglês</th>
+                    <th>Detalhes (Fonética & Tradução)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-english">
+                        I <span class="example-word">wasn't sleeping</span> when you called; I was reading.
+                        <button class="audio-btn" onclick="playAudio('I wasn\'t sleeping when you called; I was reading.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/aɪ ˈwɑːznt ˈsliːpɪŋ wen juː kɔːld aɪ wəz ˈriːdɪŋ/</span>
+                        <span class="pronunciation-text">(ÁI UÓ-zãnt SLÍI-pin UÉN iúu CÓLD; ái uãz RÍI-din)</span>
+                        <span class="translation-text">Eu não estava dormindo quando você ligou; eu estava lendo.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        You <span class="example-word">weren't paying</span> attention when the teacher explained.
+                        <button class="audio-btn" onclick="playAudio('You weren\'t paying attention when the teacher explained.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/juː wɜːrnt ˈpeɪɪŋ əˈtenʃn wen ðə ˈtiːtʃər ɪkˈspleɪnd/</span>
+                        <span class="pronunciation-text">(IÚU UÃRNT PÊI-in ã-TÉN-shãn UÉN dhã TÍI-tchãr ek-SPLÊIND)</span>
+                        <span class="translation-text">Você não estava prestando atenção quando o professor explicou.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        He <span class="example-word">wasn't working</span> at 8 PM last night.
+                        <button class="audio-btn" onclick="playAudio('He wasn\'t working at 8 PM last night.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/hiː ˈwɑːznt ˈwɜːrkɪŋ æt eɪt piː em læst naɪt/</span>
+                        <span class="pronunciation-text">(RÍI UÓ-zãnt UÃR-kin ét ÊIT PÍI-ÉM LÉST NÁIT)</span>
+                        <span class="translation-text">Ele não estava trabalhando às 20h na noite passada.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        She <span class="example-word">wasn't cooking</span> when the fire alarm went off.
+                        <button class="audio-btn" onclick="playAudio('She wasn\'t cooking when the fire alarm went off.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/ʃiː ˈwɑːznt ˈkʊkɪŋ wen ðə ˈfaɪər əˈlɑːrm went ɔːf/</span>
+                        <span class="pronunciation-text">(XÍI UÓ-zãnt CÚ-kin UÉN dhã FÁI-ãr ã-LÁRM UÉNT ÓF)</span>
+                        <span class="translation-text">Ela não estava cozinhando quando o alarme de incêndio disparou.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        It <span class="example-word">wasn't snowing</span> when we arrived in the mountains.
+                        <button class="audio-btn" onclick="playAudio('It wasn\'t snowing when we arrived in the mountains.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/ɪt ˈwɑːznt ˈsnoʊɪŋ wen wiː əˈraɪvd ɪn ðə ˈmaʊntnz/</span>
+                        <span class="pronunciation-text">(ÊT UÓ-zãnt SNÔU-in UÉN uíi ã-RÁIVD în dhã MÁUN-tãnz)</span>
+                        <span class="translation-text">Não estava nevando quando chegamos às montanhas.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        We <span class="example-word">weren't watching</span> that channel when the program started.
+                        <button class="audio-btn" onclick="playAudio('We weren\'t watching that channel when the program started.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/wiː wɜːrnt ˈwɑːtʃɪŋ ðæt ˈtʃænl wen ðə ˈproʊɡræm ˈstɑːrtɪd/</span>
+                        <span class="pronunciation-text">(UÍI UÃRNT UÓ-tchin DHÉT TCHÉ-nõl UÉN dhã PRÔU-grém STÁR-têd)</span>
+                        <span class="translation-text">Nós não estávamos assistindo aquele canal quando o programa começou.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        They <span class="example-word">weren't expecting</span> any visitors that afternoon.
+                        <button class="audio-btn" onclick="playAudio('They weren\'t expecting any visitors that afternoon.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/ðeɪ wɜːrnt ɪkˈspektɪŋ ˈeni ˈvɪzɪtərz ðæt ˌæftərˈnuːn/</span>
+                        <span class="pronunciation-text">(DHÊI UÃRNT ek-SPÉK-tin É-ni VÊ-zĩ-tãrz DHÉT éf-tãr-NÚUN)</span>
+                        <span class="translation-text">Eles não estavam esperando nenhuma visita naquela tarde.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        I <span class="example-word">wasn't listening</span> carefully when he gave the instructions.
+                        <button class="audio-btn" onclick="playAudio('I wasn\'t listening carefully when he gave the instructions.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/aɪ ˈwɑːznt ˈlɪsnɪŋ ˈkerfəli wen hiː ɡeɪv ði ɪnˈstrʌkʃnz/</span>
+                        <span class="pronunciation-text">(ÁI UÓ-zãnt LÊS-nin KÉR-fã-li UÉN ríi GUÊIV dhí în-STRÂK-shãnz)</span>
+                        <span class="translation-text">Eu não estava ouvindo atentamente quando ele deu as instruções.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        You <span class="example-word">weren't studying</span> when your mom came home.
+                        <button class="audio-btn" onclick="playAudio('You weren\'t studying when your mom came home.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/juː wɜːrnt ˈstʌdiɪŋ wen jɔːr mɑːm keɪm hoʊm/</span>
+                        <span class="pronunciation-text">(IÚU UÃRNT STÂ-di-in UÉN iór MÓM KÊIM RÔUM)</span>
+                        <span class="translation-text">Você não estava estudando quando sua mãe chegou em casa.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        He <span class="example-word">wasn't driving</span> too fast when the police stopped him.
+                        <button class="audio-btn" onclick="playAudio('He wasn\'t driving too fast when the police stopped him.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/hiː ˈwɑːznt ˈdraɪvɪŋ tuː fæst wen ðə pəˈliːs stɑːpt ɪm/</span>
+                        <span class="pronunciation-text">(RÍI UÓ-zãnt DRÁI-vin TÚU FÉST UÉN dhã pã-LÍIS STÓPT îm)</span>
+                        <span class="translation-text">Ele não estava dirigindo rápido demais quando a polícia o parou.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        She <span class="example-word">wasn't feeling</span> well, so she left the party early.
+                        <button class="audio-btn" onclick="playAudio('She wasn\'t feeling well, so she left the party early.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/ʃiː ˈwɑːznt ˈfiːlɪŋ wel soʊ ʃiː left ðə ˈpɑːrti ˈɜːrli/</span>
+                        <span class="pronunciation-text">(XÍI UÓ-zãnt FÍI-lin UÉL, sôu xíi LÉFT dhã PÁR-ti ÃR-li)</span>
+                        <span class="translation-text">Ela não estava se sentindo bem, então saiu da festa cedo.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        We <span class="example-word">weren't talking</span> about you; we were discussing a movie.
+                        <button class="audio-btn" onclick="playAudio('We weren\'t talking about you; we were discussing a movie.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/wiː wɜːrnt ˈtɔːkɪŋ əˈbaʊt juː wiː wər dɪˈskʌsɪŋ ə ˈmuːvi/</span>
+                        <span class="pronunciation-text">(UÍI UÃRNT TÓ-kin ã-BÁUT iúu; uíi uãr dĩ-SCÂ-sin ã MÚU-vi)</span>
+                        <span class="translation-text">Nós não estávamos falando sobre você; estávamos discutindo um filme.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        They <span class="example-word">weren't playing</span> very well, so they lost the game.
+                        <button class="audio-btn" onclick="playAudio('They weren\'t playing very well, so they lost the game.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/ðeɪ wɜːrnt ˈpleɪɪŋ ˈveri wel soʊ ðeɪ lɔːst ðə ɡeɪm/</span>
+                        <span class="pronunciation-text">(DHÊI UÃRNT PLÊI-in VÉ-ri UÉL, sôu dhêi LÓST dhã GUÊIM)</span>
+                        <span class="translation-text">Eles não estavam jogando muito bem, então perderam o jogo.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        I <span class="example-word">wasn't expecting</span> a call at that time.
+                        <button class="audio-btn" onclick="playAudio('I wasn\'t expecting a call at that time.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/aɪ ˈwɑːznt ɪkˈspektɪŋ ə kɔːl æt ðæt taɪm/</span>
+                        <span class="pronunciation-text">(ÁI UÓ-zãnt ek-SPÉK-tin ã CÓL ét DHÉT TÁIM)</span>
+                        <span class="translation-text">Eu não estava esperando uma ligação àquela hora.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        He <span class="example-word">wasn't wearing</span> a coat, even though it was cold.
+                        <button class="audio-btn" onclick="playAudio('He wasn\'t wearing a coat, even though it was cold.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/hiː ˈwɑːznt ˈwerɪŋ ə koʊt ˈiːvn ðoʊ ɪt wəz koʊld/</span>
+                        <span class="pronunciation-text">(RÍI UÓ-zãnt UÉ-rin ã CÔUT, ÍI-vãn DHÔU êt uãz CÔULD)</span>
+                        <span class="translation-text">Ele não estava usando casaco, embora estivesse frio.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        She <span class="example-word">wasn't looking</span> where she was going and bumped into someone.
+                        <button class="audio-btn" onclick="playAudio('She wasn\'t looking where she was going and bumped into someone.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/ʃiː ˈwɑːznt ˈlʊkɪŋ wer ʃiː wəz ˈɡoʊɪŋ ænd bʌmpt ˈɪntə ˈsʌmwʌn/</span>
+                        <span class="pronunciation-text">(XÍI UÓ-zãnt LÚ-kin UÉR xíi uãz GÔU-in énd BÂMPT ÊN-tã SÂM-uãn)</span>
+                        <span class="translation-text">Ela não estava olhando para onde ia e esbarrou em alguém.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        We <span class="example-word">weren't planning</span> to stay long, but the conversation was interesting.
+                        <button class="audio-btn" onclick="playAudio('We weren\'t planning to stay long, but the conversation was interesting.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/wiː wɜːrnt ˈplænɪŋ tə steɪ lɔːŋ bət ðə ˌkɑːnvərˈseɪʃn wəz ˈɪntrəstɪŋ/</span>
+                        <span class="pronunciation-text">(UÍI UÃRNT PLÉ-nin tã STÊI LÓN, bât dhã cón-võr-SÊI-shãn uãz ÊN-trãs-tin)</span>
+                        <span class="translation-text">Nós não estávamos planejando ficar muito tempo, mas a conversa estava interessante.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        They <span class="example-word">weren't making</span> any progress on the project.
+                        <button class="audio-btn" onclick="playAudio('They weren\'t making any progress on the project.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/ðeɪ wɜːrnt ˈmeɪkɪŋ ˈeni ˈprɑːɡres ɑːn ðə ˈprɑːdʒekt/</span>
+                        <span class="pronunciation-text">(DHÊI UÃRNT MÊI-kin É-ni PRÓ-grés ón dhã PRÓ-djekt)</span>
+                        <span class="translation-text">Eles não estavam fazendo nenhum progresso no projeto.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        The computer <span class="example-word">wasn't working</span>, so I couldn't check my email.
+                        <button class="audio-btn" onclick="playAudio('The computer wasn\'t working, so I couldn\'t check my email.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/ðə kəmˈpjuːtər ˈwɑːznt ˈwɜːrkɪŋ soʊ aɪ ˈkʊdnt tʃek maɪ ˈiːmeɪl/</span>
+                        <span class="pronunciation-text">(dhã cãm-PIÚU-tãr UÓ-zãnt UÃR-kin, sôu ái CÚ-dãnt TCHÉK mái ÍI-meil)</span>
+                        <span class="translation-text">O computador não estava funcionando, então não pude checar meu email.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        My friends <span class="example-word">weren't waiting</span> for me when I arrived.
+                        <button class="audio-btn" onclick="playAudio('My friends weren\'t waiting for me when I arrived.')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/maɪ frendz wɜːrnt ˈweɪtɪŋ fər miː wen aɪ əˈraɪvd/</span>
+                        <span class="pronunciation-text">(MÁI FRÉNDZ UÃRNT UÊI-tin fór MÍI UÉN ái ã-RÁIVD)</span>
+                        <span class="translation-text">Meus amigos não estavam me esperando quando cheguei.</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Section 14.5 Interrogative -->
+    <section>
+        <h2>14.5 Frases Interrogativas ❓</h2>
+        <p><strong>Estrutura:</strong> Was/Were + Sujeito + Verbo-ING?</p>
+
+        <table class="mobile-table">
+            <thead>
+                <tr>
+                    <th>Inglês</th>
+                    <th>Detalhes (Fonética & Tradução)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-english">
+                        <span class="example-word">Was</span> I <span class="example-word">talking</span> too loudly during the movie?
+                        <button class="audio-btn" onclick="playAudio('Was I talking too loudly during the movie?')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/wəz aɪ ˈtɔːkɪŋ tuː ˈlaʊdli ˈdʊrɪŋ ðə ˈmuːvi/</span>
+                        <span class="pronunciation-text">(UÃZ ÁI TÓ-kin TÚU LÁUD-li DÚ-rin dhã MÚU-vi?)</span>
+                        <span class="translation-text">Eu estava falando alto demais durante o filme?</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        <span class="example-word">Were</span> you <span class="example-word">studying</span> when I sent the message?
+                        <button class="audio-btn" onclick="playAudio('Were you studying when I sent the message?')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/wər juː ˈstʌdiɪŋ wen aɪ sent ðə ˈmesɪdʒ/</span>
+                        <span class="pronunciation-text">(UÃR IÚU STÂ-di-in UÉN ái SÉNT dhã MÉ-sêdj?)</span>
+                        <span class="translation-text">Você estava estudando quando eu enviei a mensagem?</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        <span class="example-word">Was</span> he <span class="example-word">working</span> late last night?
+                        <button class="audio-btn" onclick="playAudio('Was he working late last night?')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/wəz hiː ˈwɜːrkɪŋ leɪt læst naɪt/</span>
+                        <span class="pronunciation-text">(UÃZ RÍI UÃR-kin LÊIT LÉST NÁIT?)</span>
+                        <span class="translation-text">Ele estava trabalhando até tarde na noite passada?</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        <span class="example-word">Was</span> she <span class="example-word">listening</span> to the radio when the news broke?
+                        <button class="audio-btn" onclick="playAudio('Was she listening to the radio when the news broke?')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/wəz ʃiː ˈlɪsnɪŋ tə ðə ˈreɪdioʊ wen ðə nuːz broʊk/</span>
+                        <span class="pronunciation-text">(UÃZ XÍI LÊS-nin tã dhã RÊI-di-ou UÉN dhã NÚUZ BRÔUK?)</span>
+                        <span class="translation-text">Ela estava ouvindo rádio quando a notícia surgiu?</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        <span class="example-word">Was</span> it <span class="example-word">snowing</span> when you woke up?
+                        <button class="audio-btn" onclick="playAudio('Was it snowing when you woke up?')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/wəz ɪt ˈsnoʊɪŋ wen juː woʊk ʌp/</span>
+                        <span class="pronunciation-text">(UÃZ ÊT SNÔU-in UÉN iúu UÔUK ÂP?)</span>
+                        <span class="translation-text">Estava nevando quando você acordou?</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        <span class="example-word">Were</span> we <span class="example-word">making</span> the right decision at that time?
+                        <button class="audio-btn" onclick="playAudio('Were we making the right decision at that time?')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/wər wiː ˈmeɪkɪŋ ðə raɪt dɪˈsɪʒn æt ðæt taɪm/</span>
+                        <span class="pronunciation-text">(UÃR UÍI MÊI-kin dhã RÁIT dĩ-SÊ-jãn ét DHÉT TÁIM?)</span>
+                        <span class="translation-text">Nós estávamos tomando a decisão certa naquela hora?</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        <span class="example-word">Were</span> they <span class="example-word">still arguing</span> when you left?
+                        <button class="audio-btn" onclick="playAudio('Were they still arguing when you left?')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/wər ðeɪ stɪl ˈɑːrɡjuɪŋ wen juː left/</span>
+                        <span class="pronunciation-text">(UÃR DHÊI STÊL ÁR-guiu-in UÉN iúu LÉFT?)</span>
+                        <span class="translation-text">Eles ainda estavam discutindo quando você saiu?</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        What <span class="example-word">were</span> you <span class="example-word">doing</span> at 10 PM last night?
+                        <button class="audio-btn" onclick="playAudio('What were you doing at 10 PM last night?')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/wʌt wər juː ˈduːɪŋ æt ten piː em læst naɪt/</span>
+                        <span class="pronunciation-text">(UÓT uãr IÚU DÚU-in ét TÉN PÍI-ÉM LÉST NÁIT?)</span>
+                        <span class="translation-text">O que você estava fazendo às 22h na noite passada?</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        Where <span class="example-word">was</span> he <span class="example-word">going</span> when you saw him?
+                        <button class="audio-btn" onclick="playAudio('Where was he going when you saw him?')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/wer wəz hiː ˈɡoʊɪŋ wen juː sɔː ɪm/</span>
+                        <span class="pronunciation-text">(UÉR uãz RÍI GÔU-in UÉN iúu SÓ îm?)</span>
+                        <span class="translation-text">Onde ele estava indo quando você o viu?</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        Why <span class="example-word">was</span> she <span class="example-word">laughing</span> so much?
+                        <button class="audio-btn" onclick="playAudio('Why was she laughing so much?')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/waɪ wəz ʃiː ˈlæfɪŋ soʊ mʌtʃ/</span>
+                        <span class="pronunciation-text">(UÁI uãz XÍI LÉ-fin SÔU MÂTCH?)</span>
+                        <span class="translation-text">Por que ela estava rindo tanto?</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        Who <span class="example-word">were</span> they <span class="example-word">waiting</span> for at the station?
+                        <button class="audio-btn" onclick="playAudio('Who were they waiting for at the station?')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/huː wər ðeɪ ˈweɪtɪŋ fər æt ðə ˈsteɪʃn/</span>
+                        <span class="pronunciation-text">(RÚU uãr DHÊI UÊI-tin fór ét dhã STÊI-shãn?)</span>
+                        <span class="translation-text">Por quem eles estavam esperando na estação?</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        When <span class="example-word">were</span> you <span class="example-word">planning</span> to tell me the news?
+                        <button class="audio-btn" onclick="playAudio('When were you planning to tell me the news?')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/wen wər juː ˈplænɪŋ tə tel miː ðə nuːz/</span>
+                        <span class="pronunciation-text">(UÉN uãr IÚU PLÉ-nin tã TÉL míi dhã NÚUZ?)</span>
+                        <span class="translation-text">Quando você estava planejando me contar a notícia?</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        How <span class="example-word">was</span> he <span class="example-word">feeling</span> after the accident?
+                        <button class="audio-btn" onclick="playAudio('How was he feeling after the accident?')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/haʊ wəz hiː ˈfiːlɪŋ ˈæftər ði ˈæksɪdənt/</span>
+                        <span class="pronunciation-text">(RÁU uãz RÍI FÍI-lin ÉF-tãr dhí ÉK-sĩ-dãnt?)</span>
+                        <span class="translation-text">Como ele estava se sentindo depois do acidente?</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        <span class="example-word">Were</span> you <span class="example-word">still working</span> when the storm started?
+                        <button class="audio-btn" onclick="playAudio('Were you still working when the storm started?')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/wər juː stɪl ˈwɜːrkɪŋ wen ðə stɔːrm ˈstɑːrtɪd/</span>
+                        <span class="pronunciation-text">(UÃR IÚU STÊL UÃR-kin UÉN dhã STÓRM STÁR-têd?)</span>
+                        <span class="translation-text">Você ainda estava trabalhando quando a tempestade começou?</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        <span class="example-word">Was</span> she <span class="example-word">wearing</span> a red dress at the party?
+                        <button class="audio-btn" onclick="playAudio('Was she wearing a red dress at the party?')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/wəz ʃiː ˈwerɪŋ ə red dres æt ðə ˈpɑːrti/</span>
+                        <span class="pronunciation-text">(UÃZ XÍI UÉ-rin ã RÉD DRÉS ét dhã PÁR-ti?)</span>
+                        <span class="translation-text">Ela estava usando um vestido vermelho na festa?</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        <span class="example-word">Were</span> the children <span class="example-word">making</span> a lot of noise?
+                        <button class="audio-btn" onclick="playAudio('Were the children making a lot of noise?')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/wər ðə ˈtʃɪldrən ˈmeɪkɪŋ ə lɑːt əv nɔɪz/</span>
+                        <span class="pronunciation-text">(UÃR dhã TCHÊL-drãn MÊI-kin ã LÓT óv NÓIZ?)</span>
+                        <span class="translation-text">As crianças estavam fazendo muito barulho?</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        What book <span class="example-word">were</span> you <span class="example-word">reading</span> last night?
+                        <button class="audio-btn" onclick="playAudio('What book were you reading last night?')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/wʌt bʊk wər juː ˈriːdɪŋ læst naɪt/</span>
+                        <span class="pronunciation-text">(UÓT BÚK uãr IÚU RÍI-din LÉST NÁIT?)</span>
+                        <span class="translation-text">Que livro você estava lendo ontem à noite?</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        Why <span class="example-word">were</span> they <span class="example-word">running</span> so fast?
+                        <button class="audio-btn" onclick="playAudio('Why were they running so fast?')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/waɪ wər ðeɪ ˈrʌnɪŋ soʊ fæst/</span>
+                        <span class="pronunciation-text">(UÁI uãr DHÊI RÂ-nin SÔU FÉST?)</span>
+                        <span class="translation-text">Por que eles estavam correndo tão rápido?</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        <span class="example-word">Was</span> your phone <span class="example-word">ringing</span> during the meeting?
+                        <button class="audio-btn" onclick="playAudio('Was your phone ringing during the meeting?')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/wəz jɔːr foʊn ˈrɪŋɪŋ ˈdʊrɪŋ ðə ˈmiːtɪŋ/</span>
+                        <span class="pronunciation-text">(UÃZ iór FÔUN RÊN-guin DÚ-rin dhã MÍI-rin?)</span>
+                        <span class="translation-text">Seu telefone estava tocando durante a reunião?</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-english">
+                        What song <span class="example-word">were</span> they <span class="example-word">singing</span> at the party?
+                        <button class="audio-btn" onclick="playAudio('What song were they singing at the party?')">🔊</button>
+                    </td>
+                    <td class="col-details">
+                        <span class="ipa-text">/wʌt sɔːŋ wər ðeɪ ˈsɪŋɪŋ æt ðə ˈpɑːrti/</span>
+                        <span class="pronunciation-text">(UÓT SÓN uãr DHÊI SÊN-guin ét dhã PÁR-ti?)</span>
+                        <span class="translation-text">Que música eles estavam cantando na festa?</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Section 14.6 When vs While -->
+    <section>
+        <h2>14.6 Quando o Passado Simples Encontra o Contínuo 🔗</h2>
+        <div class="card">
+            <p><strong>WHEN (quando)</strong> + Passado Simples (ação curta)</p>
+            <p><strong>WHILE (enquanto)</strong> + Passado Contínuo (ação longa)</p>
+            
+            <ul style="padding-left: 20px;">
+                <li>I <span class="example-word">was watching</span> TV <span class="example-word">when</span> the phone <span class="example-word">rang</span>.
+                    <button class="audio-btn" onclick="playAudio('I was watching TV when the phone rang.')">🔊</button>
+                    <div class="vocab-details">
+                        <span class="ipa-text">/aɪ wəz ˈwɑːtʃɪŋ ˌtiːˈviː wen ðə foʊn ræŋ/</span>
+                        <span class="pronunciation-text">(ÁI uãz UÓ-tchin tíi-VÍI UÉN dhã FÔUN RÉN)</span>
+                        <span class="translation-text">Eu estava assistindo TV quando o telefone tocou.</span>
+                    </div>
+                </li>
+                <br>
+                <li><span class="example-word">When</span> the phone <span class="example-word">rang</span>, I <span class="example-word">was watching</span> TV.
+                    <button class="audio-btn" onclick="playAudio('When the phone rang, I was watching TV.')">🔊</button>
+                    <div class="vocab-details">
+                        <span class="ipa-text">/wen ðə foʊn ræŋ aɪ wəz ˈwɑːtʃɪŋ ˌtiːˈviː/</span>
+                        <span class="pronunciation-text">(UÉN dhã FÔUN RÉN, ái uãz UÓ-tchin tíi-VÍI)</span>
+                    </div>
+                </li>
+                <br>
+                <li><span class="example-word">While</span> I <span class="example-word">was studying</span>, my friend <span class="example-word">called</span>.
+                    <button class="audio-btn" onclick="playAudio('While I was studying, my friend called.')">🔊</button>
+                    <div class="vocab-details">
+                        <span class="ipa-text">/waɪl aɪ wəz ˈstʌdiɪŋ maɪ frend kɔːld/</span>
+                        <span class="pronunciation-text">(UÁI-õl ái uãz STÂ-di-in, mái FRÉND CÓLD)</span>
+                        <span class="translation-text">Enquanto eu estava estudando, meu amigo ligou.</span>
+                    </div>
+                </li>
+                <br>
+                <li>My friend <span class="example-word">called</span> <span class="example-word">while</span> I <span class="example-word">was studying</span>.
+                    <button class="audio-btn" onclick="playAudio('My friend called while I was studying.')">🔊</button>
+                    <div class="vocab-details">
+                        <span class="ipa-text">/maɪ frend kɔːld waɪl aɪ wəz ˈstʌdiɪŋ/</span>
+                        <span class="pronunciation-text">(MÁI FRÉND CÓLD UÁI-õl ái uãz STÂ-di-in)</span>
+                    </div>
+                </li>
+                <br>
+                <li><span class="example-word">While</span> I <span class="example-word">was cooking</span> dinner, my husband <span class="example-word">was reading</span> a book.
+                    <button class="audio-btn" onclick="playAudio('While I was cooking dinner, my husband was reading a book.')">🔊</button>
+                    <div class="vocab-details">
+                        <span class="ipa-text">/waɪl aɪ wəz ˈkʊkɪŋ ˈdɪnər maɪ ˈhʌzbənd wəz ˈriːdɪŋ ə bʊk/</span>
+                        <span class="pronunciation-text">(UÁI-õl ái uãz CÚ-kin DÊ-nãr, mái RÂZ-bãnd uãz RÍI-din ã BÚK)</span>
+                        <span class="translation-text">Enquanto eu estava cozinhando o jantar, meu marido estava lendo um livro.</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Section 14.7 Time Markers -->
+    <section>
+        <h2>14.7 Marcadores de Tempo 🕰️</h2>
+        <ul>
+            <li><strong>Yesterday</strong> (ontem) - Ex: Yesterday morning, I was working.</li>
+            <li><strong>Last night / week / month / year</strong> (noite / semana / mês / ano passado) - Ex: Last night at 9 PM, they were watching a film.</li>
+            <li><strong>... ago</strong> (há ... tempo) - Ex: Two hours ago, he was sleeping.</li>
+            <li><strong>At ... o'clock</strong> (às ... horas) - Ex: At 3 o'clock yesterday, she was studying.</li>
+            <li><strong>When / While</strong> (quando / enquanto)</li>
+        </ul>
+    </section>
+
+    <!-- Vocabulary Section -->
+    <section>
+        <h2>Vocabulário: Interrupções 📚</h2>
+        <div class="card">
+            <!-- Item 1 -->
+            <div class="vocab-item">
+                <div class="vocab-word">
+                    <span class="example-word">Suddenly</span> <button class="audio-btn" onclick="playAudio('Suddenly')">🔊</button>
+                </div>
+                <div class="vocab-details">
+                    <span class="ipa-text">/ˈsʌdnli/</span>
+                    <span class="pronunciation-text">(SÂ-dãn-li)</span>
+                    <span class="translation-text">De repente</span>
+                    <div style="margin-top:8px;">
+                        <em>Ex: Suddenly, the lights went out.</em> <button class="audio-btn" onclick="playAudio('Suddenly, the lights went out.')">🔊</button>
+                        <span class="ipa-text">/ˈsʌdnli ðə laɪts went aʊt/</span>
+                        <span class="pronunciation-text">(SÂ-dãn-li dhã LÁITS UÉNT ÁUT)</span>
+                        <span class="translation-text">De repente, as luzes se apagaram.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="vocab-item">
+                <div class="vocab-word">
+                    The phone <span class="example-word">rang</span> <button class="audio-btn" onclick="playAudio('The phone rang')">🔊</button>
+                </div>
+                <div class="vocab-details">
+                    <span class="ipa-text">/ðə foʊn ræŋ/</span>
+                    <span class="pronunciation-text">(dhã FÔUN RÉN)</span>
+                    <span class="translation-text">Telefone tocou</span>
+                    <div style="margin-top:8px;">
+                        <em>Ex: I was sleeping when the phone rang.</em> <button class="audio-btn" onclick="playAudio('I was sleeping when the phone rang.')">🔊</button>
+                        <span class="ipa-text">/aɪ wəz ˈsliːpɪŋ wen ðə foʊn ræŋ/</span>
+                        <span class="pronunciation-text">(ÁI uãz SLÍI-pin UÉN dhã FÔUN RÉN)</span>
+                        <span class="translation-text">Eu estava dormindo quando o telefone tocou.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="vocab-item">
+                <div class="vocab-word">
+                    The news <span class="example-word">arrived</span> / <span class="example-word">came</span> <button class="audio-btn" onclick="playAudio('The news arrived')">🔊</button>
+                </div>
+                <div class="vocab-details">
+                    <span class="ipa-text">/ðə nuːz əˈraɪvd/</span>
+                    <span class="pronunciation-text">(dhã NÚUZ ã-RÁIVD / KÊIM)</span>
+                    <span class="translation-text">Notícia chegou</span>
+                    <div style="margin-top:8px;">
+                        <em>Ex: We were having dinner when the news arrived.</em> <button class="audio-btn" onclick="playAudio('We were having dinner when the news arrived.')">🔊</button>
+                        <span class="ipa-text">/wiː wər ˈhævɪŋ ˈdɪnər wen ðə nuːz əˈraɪvd/</span>
+                        <span class="pronunciation-text">(UÍI uãr RÉ-vin DÊ-nãr UÉN dhã NÚUZ ã-RÁIVD)</span>
+                        <span class="translation-text">Nós estávamos jantando quando a notícia chegou.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="vocab-item">
+                <div class="vocab-word">
+                    Someone <span class="example-word">knocked</span> <button class="audio-btn" onclick="playAudio('Someone knocked')">🔊</button>
+                </div>
+                <div class="vocab-details">
+                    <span class="ipa-text">/ˈsʌmwʌn nɑːkt/</span>
+                    <span class="pronunciation-text">(SÂM-uãn NÓKT)</span>
+                    <span class="translation-text">Alguém bateu (na porta)</span>
+                    <div style="margin-top:8px;">
+                        <em>Ex: While I was studying, someone knocked on the door.</em> <button class="audio-btn" onclick="playAudio('While I was studying, someone knocked on the door.')">🔊</button>
+                        <span class="ipa-text">/waɪl aɪ wəz ˈstʌdiɪŋ ˈsʌmwʌn nɑːkt ɑːn ðə dɔːr/</span>
+                        <span class="pronunciation-text">(UÁI-õl ái uãz STÂ-di-in, SÂM-uãn NÓKT ón dhã DÓR)</span>
+                        <span class="translation-text">Enquanto eu estava estudando, alguém bateu na porta.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="vocab-item">
+                <div class="vocab-word">
+                    Hear a noise <button class="audio-btn" onclick="playAudio('Hear a noise')">🔊</button>
+                </div>
+                <div class="vocab-details">
+                    <span class="ipa-text">/hɪr ə nɔɪz/</span>
+                    <span class="pronunciation-text">(RÍIR ã NÓIZ)</span>
+                    <span class="translation-text">Ouvir um barulho</span>
+                    <div style="margin-top:8px;">
+                        <em>Ex: She was reading when she heard a strange noise.</em> <button class="audio-btn" onclick="playAudio('She was reading when she heard a strange noise.')">🔊</button>
+                        <span class="ipa-text">/ʃiː wəz ˈriːdɪŋ wen ʃiː hɜːrd ə streɪndʒ nɔɪz/</span>
+                        <span class="pronunciation-text">(XÍI uãz RÍI-din UÉN xíi RÃRD ã STRÊINDJ NÓIZ)</span>
+                        <span class="translation-text">Ela estava lendo quando ouviu um barulho estranho.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="vocab-item">
+                <div class="vocab-word">
+                    The alarm <span class="example-word">went off</span> <button class="audio-btn" onclick="playAudio('The alarm went off')">🔊</button>
+                </div>
+                <div class="vocab-details">
+                    <span class="ipa-text">/ði əˈlɑːrm went ɔːf/</span>
+                    <span class="pronunciation-text">(dhí ã-LÁRM UÉNT ÓF)</span>
+                    <span class="translation-text">Alarme disparou</span>
+                    <div style="margin-top:8px;">
+                        <em>Ex: He was sleeping when the alarm went off.</em> <button class="audio-btn" onclick="playAudio('He was sleeping when the alarm went off.')">🔊</button>
+                        <span class="ipa-text">/hiː wəz ˈsliːpɪŋ wen ði əˈlɑːrm went ɔːf/</span>
+                        <span class="pronunciation-text">(RÍI uãz SLÍI-pin UÉN dhí ã-LÁRM UÉNT ÓF)</span>
+                        <span class="translation-text">Ele estava dormindo quando o alarme disparou.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 7 -->
+            <div class="vocab-item">
+                <div class="vocab-word">
+                    The doorbell <span class="example-word">rang</span> <button class="audio-btn" onclick="playAudio('The doorbell rang')">🔊</button>
+                </div>
+                <div class="vocab-details">
+                    <span class="ipa-text">/ðə ˈdɔːrbel ræŋ/</span>
+                    <span class="pronunciation-text">(dhã DÓR-bél RÉN)</span>
+                    <span class="translation-text">Campainha tocou</span>
+                    <div style="margin-top:8px;">
+                        <em>Ex: I was taking a bath when the doorbell rang.</em> <button class="audio-btn" onclick="playAudio('I was taking a bath when the doorbell rang.')">🔊</button>
+                        <span class="ipa-text">/aɪ wəz ˈteɪkɪŋ ə bæθ wen ðə ˈdɔːrbel ræŋ/</span>
+                        <span class="pronunciation-text">(ÁI uãz TÊI-kin ã BÉF UÉN dhã DÓR-bél RÉN)</span>
+                        <span class="translation-text">Eu estava tomando banho quando a campainha tocou.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 8 -->
+            <div class="vocab-item">
+                <div class="vocab-word">
+                    The power <span class="example-word">went out</span> <button class="audio-btn" onclick="playAudio('The power went out')">🔊</button>
+                </div>
+                <div class="vocab-details">
+                    <span class="ipa-text">/ðə ˈpaʊər went aʊt/</span>
+                    <span class="pronunciation-text">(dhã PÁU-ãr UÉNT ÁUT)</span>
+                    <span class="translation-text">Luz acabou / A energia caiu</span>
+                    <div style="margin-top:8px;">
+                        <em>Ex: We were watching a movie when the power went out.</em> <button class="audio-btn" onclick="playAudio('We were watching a movie when the power went out.')">🔊</button>
+                        <span class="ipa-text">/wiː wər ˈwɑːtʃɪŋ ə ˈmuːvi wen ðə ˈpaʊər went aʊt/</span>
+                        <span class="pronunciation-text">(UÍI uãr UÓ-tchin ã MÚU-vi UÉN dhã PÁU-ãr UÉNT ÁUT)</span>
+                        <span class="translation-text">Nós estávamos assistindo a um filme quando a luz acabou.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 9 -->
+            <div class="vocab-item">
+                <div class="vocab-word">
+                    It started to <span class="example-word">rain</span> <button class="audio-btn" onclick="playAudio('It started to rain')">🔊</button>
+                </div>
+                <div class="vocab-details">
+                    <span class="ipa-text">/ɪt ˈstɑːrtɪd tə reɪn/</span>
+                    <span class="pronunciation-text">(êt STÁR-têd tã RÊIN)</span>
+                    <span class="translation-text">Começou a chover</span>
+                    <div style="margin-top:8px;">
+                        <em>Ex: They were playing outside when it started to rain.</em> <button class="audio-btn" onclick="playAudio('They were playing outside when it started to rain.')">🔊</button>
+                        <span class="ipa-text">/ðeɪ wər ˈpleɪɪŋ ˌaʊtˈsaɪd wen ɪt ˈstɑːrtɪd tə reɪn/</span>
+                        <span class="pronunciation-text">(DHÊI uãr PLÊI-in áut-SÁID UÉN êt STÁR-têd tã RÊIN)</span>
+                        <span class="translation-text">Eles estavam brincando lá fora quando começou a chover.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 10 -->
+            <div class="vocab-item">
+                <div class="vocab-word">
+                    Receive a call <button class="audio-btn" onclick="playAudio('Receive a call')">🔊</button>
+                </div>
+                <div class="vocab-details">
+                    <span class="ipa-text">/rɪˈsiːv ə kɔːl/</span>
+                    <span class="pronunciation-text">(ri-SÍIV ã CÓL)</span>
+                    <span class="translation-text">Receber uma ligação</span>
+                    <div style="margin-top:8px;">
+                        <em>Ex: She was working when she received an important call.</em> <button class="audio-btn" onclick="playAudio('She was working when she received an important call.')">🔊</button>
+                        <span class="ipa-text">/ʃiː wəz ˈwɜːrkɪŋ wen ʃiː rɪˈsiːvd ən ɪmˈpɔːrtnt kɔːl/</span>
+                        <span class="pronunciation-text">(XÍI uãz UÃR-kin UÉN xíi ri-SÍIVD ãn em-PÓR-tãnt CÓL)</span>
+                        <span class="translation-text">Ela estava trabalhando quando recebeu uma ligação importante.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 11 -->
+            <div class="vocab-item">
+                <div class="vocab-word">
+                    See an accident <button class="audio-btn" onclick="playAudio('See an accident')">🔊</button>
+                </div>
+                <div class="vocab-details">
+                    <span class="ipa-text">/siː ən ˈæksɪdənt/</span>
+                    <span class="pronunciation-text">(SÍI ãn ÉK-sĩ-dãnt)</span>
+                    <span class="translation-text">Ver um acidente</span>
+                    <div style="margin-top:8px;">
+                        <em>Ex: He was driving home when he saw an accident.</em> <button class="audio-btn" onclick="playAudio('He was driving home when he saw an accident.')">🔊</button>
+                        <span class="ipa-text">/hiː wəz ˈdraɪvɪŋ hoʊm wen hiː sɔː ən ˈæksɪdənt/</span>
+                        <span class="pronunciation-text">(RÍI uãz DRÁI-vin RÔUM UÉN ríi SÓ ãn ÉK-sĩ-dãnt)</span>
+                        <span class="translation-text">Ele estava dirigindo para casa quando viu um acidente.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 12 -->
+            <div class="vocab-item">
+                <div class="vocab-word">
+                    <span class="example-word">While</span> <button class="audio-btn" onclick="playAudio('While')">🔊</button>
+                </div>
+                <div class="vocab-details">
+                    <span class="ipa-text">/waɪl/</span>
+                    <span class="pronunciation-text">(UÁI-õl)</span>
+                    <span class="translation-text">Enquanto</span>
+                    <div style="margin-top:8px;">
+                        <em>Ex: While I was reading, my cat was sleeping on my lap.</em> <button class="audio-btn" onclick="playAudio('While I was reading, my cat was sleeping on my lap.')">🔊</button>
+                        <span class="ipa-text">/waɪl aɪ wəz ˈriːdɪŋ maɪ kæt wəz ˈsliːpɪŋ ɑːn maɪ læp/</span>
+                        <span class="pronunciation-text">(UÁI-õl ái uãz RÍI-din, mái KÉT uãz SLÍI-pin ón mái LÉP)</span>
+                        <span class="translation-text">Enquanto eu estava lendo, meu gato estava dormindo no meu colo.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 13 -->
+            <div class="vocab-item">
+                <div class="vocab-word">
+                    <span class="example-word">When</span> <button class="audio-btn" onclick="playAudio('When')">🔊</button>
+                </div>
+                <div class="vocab-details">
+                    <span class="ipa-text">/wen/</span>
+                    <span class="pronunciation-text">(UÉN)</span>
+                    <span class="translation-text">Quando</span>
+                    <div style="margin-top:8px;">
+                        <em>Ex: I was walking home when I met my old teacher.</em> <button class="audio-btn" onclick="playAudio('I was walking home when I met my old teacher.')">🔊</button>
+                        <span class="ipa-text">/aɪ wəz ˈwɔːkɪŋ hoʊm wen aɪ met maɪ oʊld ˈtiːtʃər/</span>
+                        <span class="pronunciation-text">(ÁI uãz UÓ-kin RÔUM UÉN ái MÉT mái ÔULD TÍI-tchãr)</span>
+                        <span class="translation-text">Eu estava caminhando para casa quando encontrei meu antigo professor.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 14 -->
+            <div class="vocab-item">
+                <div class="vocab-word">
+                    In the middle of <button class="audio-btn" onclick="playAudio('In the middle of')">🔊</button>
+                </div>
+                <div class="vocab-details">
+                    <span class="ipa-text">/ɪn ðə ˈmɪdl əv/</span>
+                    <span class="pronunciation-text">(ên dhã MÊ-dõl óv)</span>
+                    <span class="translation-text">No meio de</span>
+                    <div style="margin-top:8px;">
+                        <em>Ex: We were in the middle of a meeting when the fire alarm rang.</em> <button class="audio-btn" onclick="playAudio('We were in the middle of a meeting when the fire alarm rang.')">🔊</button>
+                        <span class="ipa-text">/wiː wər ɪn ðə ˈmɪdl əv ə ˈmiːtɪŋ wen ðə ˈfaɪər əˈlɑːrm ræŋ/</span>
+                        <span class="pronunciation-text">(UÍI uãr ên dhã MÊ-dõl óv ã MÍI-tin UÉN dhã FÁI-ãr ã-LÁRM RÉN)</span>
+                        <span class="translation-text">Nós estávamos no meio de uma reunião quando o alarme de incêndio tocou.</span>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Item 15 -->
+             <div class="vocab-item">
+                <div class="vocab-word">
+                    At exactly... <button class="audio-btn" onclick="playAudio('At exactly')">🔊</button>
+                </div>
+                <div class="vocab-details">
+                    <span class="ipa-text">/æt ɪɡˈzæktli/</span>
+                    <span class="pronunciation-text">(ét eg-ZÉKT-li)</span>
+                    <span class="translation-text">Exatamente às...</span>
+                    <div style="margin-top:8px;">
+                        <em>Ex: At exactly 8 PM, I was preparing dinner.</em> <button class="audio-btn" onclick="playAudio('At exactly 8 PM, I was preparing dinner.')">🔊</button>
+                        <span class="ipa-text">/æt ɪɡˈzæktli eɪt piː em aɪ wəz priˈperɪŋ ˈdɪnər/</span>
+                        <span class="pronunciation-text">(ét eg-ZÉKT-li ÊIT PÍI-ÉM, ái uãz pri-PÉ-rin DÊ-nãr)</span>
+                        <span class="translation-text">Exatamente às 20h, eu estava preparando o jantar.</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Extra Task -->
+    <div class="extra-task">
+        <h4>Extra Task: Reading and Comprehension 🧠</h4>
+        <p><strong>Translate the following text. Pay attention to how the Past Continuous and Past Simple are used together to tell a story.</strong></p>
+        <p>
+            Yesterday was a strange day. The sun was shining brightly when I left my house in the morning. Birds were singing in the trees, and everything seemed perfect. I was walking to the bus stop, listening to my favorite podcast, when I suddenly remembered I had an important meeting at 10 AM. I checked my watch; it was already 9:30! While I was running to catch the bus, I saw my neighbor, Mrs. Gable. She was watering her plants and waved at me. I quickly waved back and kept going.
+        </p>
+        <p>
+            I was sitting on the bus, nervously looking at the traffic, when my phone buzzed. It was a message from my boss. "Meeting is cancelled," it said. I felt a huge wave of relief. The bus was still moving slowly, so I decided to get off and walk the rest of the way to the office. While I was walking, I passed a small café. The smell of coffee was amazing. I wasn't planning to stop, but the cozy atmosphere invited me in. I bought a large cappuccino and a croissant.
+        </p>
+        <p>
+            I was enjoying my unexpected break when I saw an old friend from college, Mark. He was sitting at a corner table, reading a book. I walked over to say hello. We were talking about our lives and laughing about old memories when we realized two hours had passed. It was a wonderful surprise. When I finally got to the office, my boss was just leaving for lunch. He smiled and said, "Sometimes, cancelled plans lead to better things." I couldn't agree more.
+        </p>
+
+        <div style="margin-top: 20px;">
+            <strong>Quiz:</strong> What was the narrator doing when they saw their neighbor, Mrs. Gable?
+        </div>
+        <ul class="quiz-options">
+            <li>A) Sitting on the bus.</li>
+            <li>B) Drinking coffee in a café.</li>
+            <li>C) Running to catch the bus.</li>
+            <li>D) Attending an important meeting.</li>
+            <li>E) Listening to a podcast at home.</li>
+        </ul>
+        
+        <details class="gabarito">
+            <summary>Ver Gabarito do Quiz</summary>
+            <p><strong>Resposta Correta:</strong> C</p>
+        </details>
+    </div>
+
+    <!-- Continue Learning -->
+    <section>
+        <h3>Como Continuar Aprendendo? 🚀</h3>
+        <div class="nota-gramatical" style="border-left-color: #27ae60; background-color: #e6f7ef;">
+            <p>Muito bem! O Passado Contínuo adiciona uma nova dimensão às suas narrativas. Para praticar:</p>
+            <ul class="exercise-list" style="list-style-type: disc;">
+                <li><strong>Crie Mini-Histórias:</strong> Pense em algo que aconteceu com você. O que você estava fazendo quando aquilo aconteceu? Escreva 2-3 frases.</li>
+                <li><strong>Use "When" e "While":</strong> Pratique conectar duas ações no passado usando "when" (para a ação curta que interrompe) e "while" (para a ação longa em progresso).</li>
+                <li><strong>Descreva Cenas de Filmes/Livros:</strong> Pense em uma cena de um filme ou livro. O que os personagens estavam fazendo em um momento específico?</li>
+                <li><strong>Pergunte Sobre o Passado Recente:</strong> "What were you doing this morning at 10 AM?" "Were you watching TV when I called?"</li>
+                <li><strong>Compare com o Passado Simples:</strong> Certifique-se de que entende quando usar cada um. Passado Simples para ações concluídas, Passado Contínuo para ações em progresso no passado.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Exercises -->
+    <section>
+        <h3>Exercícios Práticos 📝</h3>
+        <div class="secao-exercicios card">
+            <h4>Parte 1: Complete as Frases</h4>
+            <p>Use o Passado Contínuo (afirmativo, negativo ou interrogativo) do verbo entre parênteses.</p>
+            <ol class="exercise-list">
+                <li>I <span class="fill-in-blank">__________</span> (watch) TV when the phone rang.</li>
+                <li>She <span class="fill-in-blank">__________</span> (not / sleep) at midnight; she <span class="fill-in-blank">__________</span> (read) a book.</li>
+                <li>What <span class="fill-in-blank">__________</span> (you / do) when the storm started?</li>
+                <li>They <span class="fill-in-blank">__________</span> (have) dinner when we arrived.</li>
+                <li>He <span class="fill-in-blank">__________</span> (not / work) yesterday afternoon; he <span class="fill-in-blank">__________</span> (relax) at home.</li>
+                <li><span class="fill-in-blank">__________</span> (it / rain) when you left the house?</li>
+            </ol>
+
+            <h4>Parte 2: When ou While?</h4>
+            <p>Complete as frases com "when" ou "while".</p>
+            <ol class="exercise-list">
+                <li>I was studying <span class="fill-in-blank">__________</span> my brother was playing video games.</li>
+                <li>The lights went out <span class="fill-in-blank">__________</span> I was taking a shower.</li>
+                <li>She was cooking <span class="fill-in-blank">__________</span> her friend called.</li>
+                <li><span class="fill-in-blank">__________</span> they were walking in the park, they saw a deer.</li>
+                <li>He fell asleep <span class="fill-in-blank">__________</span> he was watching the movie.</li>
+            </ol>
+
+            <details class="gabarito">
+                <summary>Ver Respostas dos Exercícios</summary>
+                <p><em>Respostas da Parte 1: 1. was watching, 2. wasn't sleeping, was reading, 3. were you doing, 4. were having, 5. wasn't working, was relaxing, 6. Was it raining.</em></p>
+                <p><em>Respostas da Parte 2: 1. while, 2. while (or when), 3. when, 4. While, 5. while.</em></p>
+            </details>
+        </div>
+    </section>
+
+    <!-- Conclusion -->
+    <section>
+        <h3>Conclusão 🥳</h3>
+        <p>Parabéns por concluir a Aula 14! Agora você pode usar o Passado Contínuo para descrever ações em progresso no passado, criar cenários e falar sobre eventos que foram interrompidos. Isso tornará suas histórias muito mais interessantes e detalhadas.</p>
+        <p>Continue praticando a estrutura e o uso de "when" e "while" para conectar ideias no passado.</p>
+        <p>Na Aula 15: "Planos e Previsões – O Futuro com "Will"", vamos começar a olhar para o futuro e aprender como expressar previsões, promessas e decisões espontâneas. Até lá!</p>
+    </section>
+
+    <a href="#" class="nav-btn">⬅️ Voltar ao Menu</a>
+
+    <footer>
+        <p>Aula 14: Ações em Progresso no Passado</p>
+    </footer>
+
+</div>
+
+<script>
+    // Configuração do SpeechSynthesis para Mobile
+    let voices = [];
+    
+    // Função para carregar vozes
+    function loadVoices() { 
+        voices = window.speechSynthesis.getVoices(); 
+    }
+    
+    // Garantir carregamento assíncrono (especialmente para Chrome/Android)
+    if (window.speechSynthesis.onvoiceschanged !== undefined) {
+        window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+    
+    // Tentativa inicial de carregamento
+    loadVoices();
+
+    function playAudio(text) {
+        if ('speechSynthesis' in window) {
+            // Cancela áudio anterior para não sobrepor
+            window.speechSynthesis.cancel();
+            
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US'; 
+            utterance.rate = 0.85; // Velocidade um pouco mais lenta para estudo
+
+            // Se vozes ainda não carregaram (edge case), tenta carregar agora
+            if (voices.length === 0) voices = window.speechSynthesis.getVoices();
+            
+            // Lógica de seleção de voz (Prioridade: Google/Premium > Nativa US > Qualquer EN)
+            const targetVoice = voices.find(voice => 
+                (voice.name.includes('Google') || voice.name.includes('Premium') || voice.name.includes('Enhanced')) && voice.lang === 'en-US'
+            ) || voices.find(voice => 
+                voice.lang === 'en-US'
+            ) || voices.find(voice => 
+                voice.lang.startsWith('en')
+            );
+
+            if (targetVoice) {
+                utterance.voice = targetVoice;
+                console.log("Voz selecionada: " + targetVoice.name);
+            }
+
+            window.speechSynthesis.speak(utterance);
+        } else {
+            alert("Desculpe, seu navegador não suporta áudio nativo.");
+        }
+    }
+</script>
+
+</body>
+</html>
